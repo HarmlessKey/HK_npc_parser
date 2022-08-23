@@ -1,0 +1,106 @@
+{
+	"_id": "183",
+	"name": "kobold",
+	"url": "kobold",
+	"size": "Medium",
+	"alignment": "Lawful evil",
+	"subtype": "Kobold",
+	"type": "Humanoid",
+	"source": "mm 195",
+	"armor_class": 12,
+	"hit_points": 5,
+	"hit_dice": "2d6",
+	"proficiency": 2,
+	"challenge_rating": 0.125,
+	"strength": 7,
+	"dexterity": 15,
+	"constitution": 9,
+	"intelligence": 8,
+	"wisdom": 7,
+	"charisma": 8,
+	"walk_speed": 30,
+	"senses": {
+		"darkvision": {
+			"darkvision": true,
+			"range": 60
+		}
+	},
+	"saving_throws": [],
+	"skills": [],
+	"skills_expertise": [],
+	"damage_resistances": [],
+	"damage_vulnerability": [],
+	"damage_immunities": [],
+	"condition_immunities": [],
+	"caster_spell_slots": [],
+	"actions": [
+		{
+			"action_list": [
+				{
+					"attack_bonus": 4,
+					"rolls": [
+						{
+							"damage_type": "piercing",
+							"dice_count": 1,
+							"dice_type": 4,
+							"fixed_val": 2,
+							"miss_mod": 0
+						}
+					],
+					"type": "melee_weapon"
+				}
+			],
+			"desc": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 4 (1d4 + 2) piercing damage.",
+			"name": "Dagger",
+			"reach": 5
+		},
+		{
+			"action_list": [
+				{
+					"attack_bonus": 4,
+					"rolls": [
+						{
+							"damage_type": "bludgeoning",
+							"dice_count": 1,
+							"dice_type": 4,
+							"fixed_val": 2,
+							"miss_mod": 0
+						}
+					],
+					"type": "ranged_weapon"
+				}
+			],
+			"desc": "Ranged Weapon Attack: +4 to hit, range 30/120 ft., one target. Hit: 4 (1d4 + 2) bludgeoning damage.",
+			"name": "Sling",
+			"range": "30/120"
+		}
+	],
+	"languages": [
+		"Common",
+		"Draconic"
+	],
+	"special_abilities": [
+		{
+			"action_list": [
+				{
+					"rolls": [],
+					"type": "other"
+				}
+			],
+			"desc": "While in sunlight, the kobold has disadvantage on attack rolls, as well as on Wisdom (Perception) checks that rely on sight.",
+			"name": "Sunlight Sensitivity"
+		},
+		{
+			"action_list": [
+				{
+					"rolls": [],
+					"type": "other"
+				}
+			],
+			"desc": "The kobold has advantage on an attack roll against a creature if at least one of the kobold's allies is within 5 ft. of the creature and the ally isn't incapacitated.",
+			"name": "Pack Tactics"
+		}
+	],
+	"legendary_actions": [],
+	"reactions": []
+}

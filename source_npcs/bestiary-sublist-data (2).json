@@ -1,0 +1,989 @@
+[
+	{
+		"name": "Kobold",
+		"source": "MM",
+		"page": 195,
+		"srd": true,
+		"basicRules": true,
+		"otherSources": [
+			{
+				"source": "HotDQ"
+			},
+			{
+				"source": "RoT"
+			},
+			{
+				"source": "TftYP"
+			},
+			{
+				"source": "ToA"
+			},
+			{
+				"source": "WDH"
+			},
+			{
+				"source": "WDMM"
+			},
+			{
+				"source": "GoS"
+			},
+			{
+				"source": "BGDIA"
+			},
+			{
+				"source": "ERLW"
+			},
+			{
+				"source": "EGW"
+			}
+		],
+		"size": [
+			"S"
+		],
+		"type": {
+			"type": "humanoid",
+			"tags": [
+				"kobold"
+			]
+		},
+		"alignment": [
+			"L",
+			"E"
+		],
+		"ac": [
+			12
+		],
+		"hp": {
+			"average": 5,
+			"formula": "2d6 - 2"
+		},
+		"speed": {
+			"walk": 30
+		},
+		"str": 7,
+		"dex": 15,
+		"con": 9,
+		"int": 8,
+		"wis": 7,
+		"cha": 8,
+		"senses": [
+			"darkvision 60 ft."
+		],
+		"passive": 8,
+		"languages": [
+			"Common",
+			"Draconic"
+		],
+		"cr": "1/8",
+		"trait": [
+			{
+				"name": "Sunlight Sensitivity",
+				"entries": [
+					"While in sunlight, the kobold has disadvantage on attack rolls, as well as on Wisdom ({@skill Perception}) checks that rely on sight."
+				]
+			},
+			{
+				"name": "Pack Tactics",
+				"entries": [
+					"The kobold has advantage on an attack roll against a creature if at least one of the kobold's allies is within 5 feet of the creature and the ally isn't {@condition incapacitated}."
+				]
+			}
+		],
+		"action": [
+			{
+				"name": "Dagger",
+				"entries": [
+					"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+				]
+			},
+			{
+				"name": "Sling",
+				"entries": [
+					"{@atk rw} {@hit 4} to hit, range 30/120 ft., one target. {@h}4 ({@damage 1d4 + 2}) bludgeoning damage."
+				]
+			}
+		],
+		"environment": [
+			"arctic",
+			"coastal",
+			"desert",
+			"forest",
+			"hill",
+			"mountain",
+			"swamp",
+			"underdark",
+			"urban"
+		],
+		"soundClip": {
+			"type": "internal",
+			"path": "bestiary/kobold.mp3"
+		},
+		"traitTags": [
+			"Pack Tactics",
+			"Sunlight Sensitivity"
+		],
+		"senseTags": [
+			"D"
+		],
+		"languageTags": [
+			"C",
+			"DR"
+		],
+		"damageTags": [
+			"B",
+			"P"
+		],
+		"miscTags": [
+			"MW",
+			"RNG",
+			"RW"
+		],
+		"hasToken": true,
+		"hasFluff": true,
+		"hasFluffImages": true,
+		"__prop": "monster",
+		"_pTypes": {
+			"type": "humanoid",
+			"tags": [
+				"kobold"
+			],
+			"asText": "humanoid (kobold)"
+		},
+		"_pCr": "1/8",
+		"_fCr": [
+			"1/8"
+		],
+		"_fSpeedType": [
+			"walk"
+		],
+		"_fSpeed": 30,
+		"_fAc": [
+			12
+		],
+		"_fHp": 5,
+		"_fAlign": [
+			"L",
+			"E"
+		],
+		"_fVuln": [],
+		"_fRes": [],
+		"_fImm": [],
+		"_fCondImm": [],
+		"_fSave": [],
+		"_fSkill": [],
+		"_fSources": [
+			"MM",
+			{
+				"item": "HotDQ",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "RoT",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "TftYP",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "ToA",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "WDH",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "WDMM",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "GoS",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "BGDIA",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "ERLW",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "EGW",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			}
+		],
+		"_fPassive": 8,
+		"_fMisc": [
+			"MW",
+			"RNG",
+			"RW",
+			"SRD",
+			"Basic Rules",
+			"Has Token",
+			"Has Info",
+			"Has Images"
+		],
+		"_fLanguageTags": [
+			"C",
+			"DR"
+		]
+	},
+	{
+		"name": "Kobold Scale Sorcerer",
+		"source": "VGM",
+		"page": 167,
+		"otherSources": [
+			{
+				"source": "ToA"
+			}
+		],
+		"reprintedAs": [
+			"Kobold Scale Sorcerer|MPMM"
+		],
+		"size": [
+			"S"
+		],
+		"type": {
+			"type": "humanoid",
+			"tags": [
+				"kobold"
+			]
+		},
+		"alignment": [
+			"L",
+			"E"
+		],
+		"ac": [
+			{
+				"ac": 15,
+				"from": [
+					"natural armor"
+				]
+			}
+		],
+		"hp": {
+			"average": 27,
+			"formula": "5d6 + 10"
+		},
+		"speed": {
+			"walk": 30
+		},
+		"str": 7,
+		"dex": 15,
+		"con": 14,
+		"int": 10,
+		"wis": 9,
+		"cha": 14,
+		"skill": {
+			"arcana": "+2",
+			"medicine": "+1"
+		},
+		"senses": [
+			"darkvision 60 ft."
+		],
+		"passive": 9,
+		"languages": [
+			"Common",
+			"Draconic"
+		],
+		"cr": "1",
+		"spellcasting": [
+			{
+				"name": "Spellcasting",
+				"headerEntries": [
+					"The kobold is a 3rd-level spellcaster. Its spellcasting ability is Charisma (spell save {@dc 12}, {@hit 4} to hit with spell attacks). It has the following sorcerer spells prepared:"
+				],
+				"spells": {
+					"0": {
+						"spells": [
+							"{@spell fire bolt}",
+							"{@spell mage hand}",
+							"{@spell mending}",
+							"{@spell poison spray}"
+						]
+					},
+					"1": {
+						"slots": 4,
+						"spells": [
+							"{@spell charm person}",
+							"{@spell chromatic orb}",
+							"{@spell expeditious retreat}"
+						]
+					},
+					"2": {
+						"slots": 2,
+						"spells": [
+							"{@spell scorching ray}"
+						]
+					}
+				},
+				"ability": "cha",
+				"type": "spellcasting"
+			}
+		],
+		"trait": [
+			{
+				"name": "Sorcery Points",
+				"entries": [
+					"The kobold has 3 sorcery points. It regains all its spent sorcery points when it finishes a long rest. It can spend its sorcery points on the following options:",
+					"Heightened Spell: When it casts a spell that forces a creature to a saving throw to resist the spell's effects, the kobold can spend 3 sorcery points to give one target of the spell disadvantage on its first saving throw against the spell.",
+					"Subtle Spell: When the kobold casts a spell, it can spend 1 sorcery point to cast the spell without any somatic or verbal components."
+				]
+			},
+			{
+				"name": "Pack Tactics",
+				"entries": [
+					"The kobold has advantage on an attack roll against a creature it at least one of the kobold's allies is within 5 feet of the creature and the ally isn't {@condition incapacitated}."
+				]
+			},
+			{
+				"name": "Sunlight Sensitivity",
+				"entries": [
+					"While in sunlight, the kobold has disadvantage on attack rolls, as well as on Wisdom ({@skill Perception}) checks that rely on sight."
+				]
+			}
+		],
+		"action": [
+			{
+				"name": "Dagger",
+				"entries": [
+					"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+				]
+			}
+		],
+		"environment": [
+			"forest",
+			"hill",
+			"mountain",
+			"underdark",
+			"urban"
+		],
+		"soundClip": {
+			"type": "internal",
+			"path": "bestiary/kobold-scale-sorcerer.mp3"
+		},
+		"traitTags": [
+			"Pack Tactics",
+			"Sunlight Sensitivity"
+		],
+		"senseTags": [
+			"D"
+		],
+		"languageTags": [
+			"C",
+			"DR"
+		],
+		"damageTags": [
+			"P"
+		],
+		"damageTagsSpell": [
+			"A",
+			"C",
+			"F",
+			"I",
+			"L",
+			"T"
+		],
+		"spellcastingTags": [
+			"CS"
+		],
+		"miscTags": [
+			"MW",
+			"RW",
+			"THW"
+		],
+		"conditionInflictSpell": [
+			"charmed"
+		],
+		"hasToken": true,
+		"hasFluff": true,
+		"hasFluffImages": true,
+		"__prop": "monster",
+		"_pTypes": {
+			"type": "humanoid",
+			"tags": [
+				"kobold"
+			],
+			"asText": "humanoid (kobold)"
+		},
+		"_pCr": "1",
+		"_fCr": [
+			"1"
+		],
+		"_fSpeedType": [
+			"walk"
+		],
+		"_fSpeed": 30,
+		"_fAc": [
+			15
+		],
+		"_fHp": 27,
+		"_fAlign": [
+			"L",
+			"E"
+		],
+		"_fVuln": [],
+		"_fRes": [],
+		"_fImm": [],
+		"_fCondImm": [],
+		"_fSave": [],
+		"_fSkill": [
+			"arcana",
+			"medicine"
+		],
+		"_fSources": [
+			"VGM",
+			{
+				"item": "ToA",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			}
+		],
+		"_fPassive": 9,
+		"_fMisc": [
+			"Spellcaster",
+			"Spellcaster, Charisma",
+			"MW",
+			"RW",
+			"THW",
+			"Has Token",
+			"Has Info",
+			"Has Images",
+			"Reprinted",
+			"AC from Natural Armor"
+		],
+		"_fSpellSlotLevels": [
+			1,
+			2
+		],
+		"_fSpellsKnown": [
+			"fire bolt|phb",
+			"mage hand|phb",
+			"mending|phb",
+			"poison spray|phb",
+			"charm person|phb",
+			"chromatic orb|phb",
+			"expeditious retreat|phb",
+			"scorching ray|phb"
+		],
+		"_fLanguageTags": [
+			"C",
+			"DR"
+		]
+	},
+	{
+		"name": "Archmage",
+		"source": "MM",
+		"page": 342,
+		"srd": true,
+		"otherSources": [
+			{
+				"source": "CoS"
+			},
+			{
+				"source": "SKT"
+			},
+			{
+				"source": "WDH"
+			},
+			{
+				"source": "WDMM"
+			},
+			{
+				"source": "GoS"
+			},
+			{
+				"source": "BGDIA"
+			},
+			{
+				"source": "ERLW"
+			},
+			{
+				"source": "IMR"
+			},
+			{
+				"source": "EGW"
+			},
+			{
+				"source": "MOT"
+			},
+			{
+				"source": "IDRotF"
+			},
+			{
+				"source": "CM"
+			},
+			{
+				"source": "JttRC"
+			},
+			{
+				"source": "LoX"
+			}
+		],
+		"size": [
+			"M"
+		],
+		"type": {
+			"type": "humanoid",
+			"tags": [
+				"any race"
+			]
+		},
+		"alignment": [
+			"A"
+		],
+		"ac": [
+			12,
+			{
+				"ac": 15,
+				"condition": "with {@spell mage armor}",
+				"braces": true
+			}
+		],
+		"hp": {
+			"average": 99,
+			"formula": "18d8 + 18"
+		},
+		"speed": {
+			"walk": 30
+		},
+		"str": 10,
+		"dex": 14,
+		"con": 12,
+		"int": 20,
+		"wis": 15,
+		"cha": 16,
+		"save": {
+			"int": "+9",
+			"wis": "+6"
+		},
+		"skill": {
+			"arcana": "+13",
+			"history": "+13"
+		},
+		"passive": 12,
+		"resist": [
+			{
+				"special": "damage from spells"
+			},
+			{
+				"resist": [
+					"bludgeoning",
+					"piercing",
+					"slashing"
+				],
+				"note": "(from stoneskin)",
+				"cond": true,
+				"preNote": "nonmagical"
+			}
+		],
+		"languages": [
+			"any six languages"
+		],
+		"cr": "12",
+		"spellcasting": [
+			{
+				"name": "Spellcasting",
+				"headerEntries": [
+					"The archmage is an 18th-level spellcaster. Its spellcasting ability is Intelligence (spell save {@dc 17}, {@hit 9} to hit with spell attacks). The archmage can cast {@spell disguise self} and {@spell invisibility} at will and has the following wizard spells prepared:"
+				],
+				"will": [
+					"{@spell disguise self}",
+					"{@spell invisibility}"
+				],
+				"spells": {
+					"0": {
+						"spells": [
+							"{@spell fire bolt}",
+							"{@spell light}",
+							"{@spell mage hand}",
+							"{@spell prestidigitation}",
+							"{@spell shocking grasp}"
+						]
+					},
+					"1": {
+						"slots": 4,
+						"spells": [
+							"{@spell detect magic}",
+							"{@spell identify}",
+							"{@spell mage armor}*",
+							"{@spell magic missile}"
+						]
+					},
+					"2": {
+						"slots": 3,
+						"spells": [
+							"{@spell detect thoughts}",
+							"{@spell mirror image}",
+							"{@spell misty step}"
+						]
+					},
+					"3": {
+						"slots": 3,
+						"spells": [
+							"{@spell counterspell}",
+							"{@spell fly}",
+							"{@spell lightning bolt}"
+						]
+					},
+					"4": {
+						"slots": 3,
+						"spells": [
+							"{@spell banishment}",
+							"{@spell fire shield}",
+							"{@spell stoneskin}*"
+						]
+					},
+					"5": {
+						"slots": 3,
+						"spells": [
+							"{@spell cone of cold}",
+							"{@spell scrying}",
+							"{@spell wall of force}"
+						]
+					},
+					"6": {
+						"slots": 1,
+						"spells": [
+							"{@spell globe of invulnerability}"
+						]
+					},
+					"7": {
+						"slots": 1,
+						"spells": [
+							"{@spell teleport}"
+						]
+					},
+					"8": {
+						"slots": 1,
+						"spells": [
+							"{@spell mind blank}*"
+						]
+					},
+					"9": {
+						"slots": 1,
+						"spells": [
+							"{@spell time stop}"
+						]
+					}
+				},
+				"footerEntries": [
+					"*The archmage casts these spells on itself before combat."
+				],
+				"ability": "int",
+				"hidden": [
+					"will"
+				],
+				"type": "spellcasting"
+			}
+		],
+		"trait": [
+			{
+				"name": "Magic Resistance",
+				"entries": [
+					"The archmage has advantage on saving throws against spells and other magical effects."
+				]
+			}
+		],
+		"action": [
+			{
+				"name": "Dagger",
+				"entries": [
+					"{@atk mw,rw} {@hit 6} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+				]
+			}
+		],
+		"variant": [
+			{
+				"type": "variant",
+				"name": "Familiars",
+				"entries": [
+					"Any spellcaster that can cast the {@spell find familiar} spell (such as an archmage or mage) is likely to have a familiar. The familiar can be one of the creatures described in the spell or some other Tiny monster, such as a {@creature crawling claw}, {@creature imp}, {@creature pseudodragon}, or {@creature quasit}."
+				]
+			}
+		],
+		"environment": [
+			"urban"
+		],
+		"soundClip": {
+			"type": "internal",
+			"path": "bestiary/archmage.mp3"
+		},
+		"traitTags": [
+			"Magic Resistance"
+		],
+		"languageTags": [
+			"X"
+		],
+		"damageTags": [
+			"P"
+		],
+		"damageTagsSpell": [
+			"C",
+			"F",
+			"L",
+			"O"
+		],
+		"spellcastingTags": [
+			"CW"
+		],
+		"miscTags": [
+			"MW",
+			"RW",
+			"THW"
+		],
+		"hasToken": true,
+		"hasFluff": true,
+		"hasFluffImages": true,
+		"_versions": [
+			{
+				"name": "Archmage (Familiar)",
+				"source": "MM",
+				"_mod": {
+					"_": {
+						"mode": "addSpells",
+						"spells": {
+							"1": {
+								"spells": [
+									"{@spell find familiar} (one of the creatures described in the spell or some other Tiny monster, such as a {@creature crawling claw}, {@creature imp}, {@creature pseudodragon}, or {@creature quasit})"
+								]
+							}
+						}
+					}
+				},
+				"variant": null
+			}
+		],
+		"__prop": "monster",
+		"_pTypes": {
+			"type": "humanoid",
+			"tags": [
+				"any race"
+			],
+			"asText": "humanoid (any race)"
+		},
+		"_pCr": "12",
+		"_fCr": [
+			"12"
+		],
+		"_fSpeedType": [
+			"walk"
+		],
+		"_fSpeed": 30,
+		"_fAc": [
+			12,
+			15
+		],
+		"_fHp": 99,
+		"_fAlign": [
+			"A"
+		],
+		"_fVuln": [],
+		"_fRes": [
+			"bludgeoning (Conditional)",
+			"piercing (Conditional)",
+			"slashing (Conditional)"
+		],
+		"_fImm": [],
+		"_fCondImm": [],
+		"_fSave": [
+			"int",
+			"wis"
+		],
+		"_fSkill": [
+			"arcana",
+			"history"
+		],
+		"_fSources": [
+			"MM",
+			{
+				"item": "CoS",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "SKT",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "WDH",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "WDMM",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "GoS",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "BGDIA",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "ERLW",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "IMR",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "EGW",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "MOT",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "IDRotF",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "CM",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "JttRC",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			},
+			{
+				"item": "LoX",
+				"isIgnoreRed": true,
+				"rendered": null,
+				"searchText": null,
+				"isOtherSource": true
+			}
+		],
+		"_fPassive": 12,
+		"_fMisc": [
+			"Spellcaster",
+			"Spellcaster, Intelligence",
+			"Has Variants",
+			"MW",
+			"RW",
+			"THW",
+			"SRD",
+			"Has Token",
+			"Has Info",
+			"Has Images"
+		],
+		"_fSpellSlotLevels": [
+			1,
+			2,
+			3,
+			4,
+			5,
+			6,
+			7,
+			8,
+			9
+		],
+		"_fSpellsKnown": [
+			"disguise self|phb",
+			"invisibility|phb",
+			"fire bolt|phb",
+			"light|phb",
+			"mage hand|phb",
+			"prestidigitation|phb",
+			"shocking grasp|phb",
+			"detect magic|phb",
+			"identify|phb",
+			"mage armor|phb",
+			"magic missile|phb",
+			"detect thoughts|phb",
+			"mirror image|phb",
+			"misty step|phb",
+			"counterspell|phb",
+			"fly|phb",
+			"lightning bolt|phb",
+			"banishment|phb",
+			"fire shield|phb",
+			"stoneskin|phb",
+			"cone of cold|phb",
+			"scrying|phb",
+			"wall of force|phb",
+			"globe of invulnerability|phb",
+			"teleport|phb",
+			"mind blank|phb",
+			"time stop|phb"
+		],
+		"_fLanguageTags": [
+			"X"
+		]
+	}
+]
