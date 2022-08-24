@@ -20,16 +20,16 @@ class FiveEMapper(BaseMapper):
 		return sizeTable[baseSize]
 
 	def type(self):
-		return self.npc['type']['type']
+		return str(self.npc['type']['type']).capitalize()
 
 	def subtype(self):
 		if hasattr(self.npc['type'], 'tags'):
-			return self.npc['type']['tags'][0]
+			return str(self.npc['type']['tags'][0]).capitalize()
 		return ""
 
 	def source(self):
 		source = f"{self.npc['source']} {self.npc['page']}"
-		source += f" [{', '.join(map(lambda s: s['source'], self.npc['otherSources']))}]"
+		# source += f" [{', '.join(map(lambda s: s['source'], self.npc['otherSources']))}]"
 		return source
 
 	def armor_class(self):
@@ -45,7 +45,7 @@ class FiveEMapper(BaseMapper):
 		return int(self.npc['hp']['average'])
 
 	def hit_dice(self):
-		return self.npc['hp']['formula']
+		return str(self.npc['hp']['formula']).split(' ')[0]
 
 	def proficiency(self):
 		return self.calcProficiency(self.challenge_rating())
@@ -73,10 +73,12 @@ class FiveEMapper(BaseMapper):
 		return self.npc['cha']
 
 	def walk_speed(self):
-		return ""
+		if hasattr(self.npc['speed'], 'walk'):
+			return int(self.npc['speed']['walk'])
+		return 0
 
 	def senses(self):
-		return []
+		return {}
 
 	def languages(self):
 		return self.npc['languages']

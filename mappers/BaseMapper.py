@@ -6,7 +6,7 @@ class BaseMapper(ABC):
 		self.npc = npc
 
 	def parse(self):
-		attr_list = ['name', 'url', 'size', 'alignment', 'type', 'subtype', 'source', 'armor_class', 'hit_points', 'hit_dice', 'proficiency', 'challenge_rating', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma', 'walk_speed', 'senses', 'languages', 'saving_throws', 'skills', 'skills_expertise', 'damage_resistances', 'damage_vulnerability', 'damage_immunities', 'condition_immunities', 'caster_spell_slots', 'actions', 'special_abilities', 'legendary_actions', 'reactions']
+		attr_list = ['name', 'size', 'alignment', 'type', 'subtype', 'source', 'armor_class', 'hit_points', 'hit_dice', 'proficiency', 'challenge_rating', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma', 'walk_speed', 'senses', 'languages', 'saving_throws', 'skills', 'skills_expertise', 'damage_resistances', 'damage_vulnerability', 'damage_immunities', 'condition_immunities', 'caster_spell_slots', 'actions', 'special_abilities', 'legendary_actions', 'reactions']
 		parsed_npc = dict()
 		for attr in attr_list:
 			func = getattr(self, attr)
@@ -33,14 +33,11 @@ class BaseMapper(ABC):
 	def name(self):
 		raise NotImplementedError
 
-	def url(self):
-		return ""
-
 	def size(self):
 		raise NotImplementedError
 
 	def alignment(self):
-		return ""
+		return "Unaligned"
 
 	def type(self):
 		return ""
@@ -88,7 +85,7 @@ class BaseMapper(ABC):
 		return ""
 
 	def senses(self):
-		return []
+		return {}
 
 	def languages(self):
 		raise NotImplementedError

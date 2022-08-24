@@ -5,22 +5,33 @@ from mappers.FiveEMapper import FiveEMapper
 
 import pprint
 
-SOURCE_NPC_DIR = path.join(path.dirname(path.abspath(__file__)), 'source_npcs')
-MAPPER_FILE = path.join(path.dirname(path.abspath(__file__)), 'mapper.json')
-MAPPER = json.load(open(MAPPER_FILE))
+CURR_DIR = path.dirname(path.abspath(__file__))
+TARGET_NPC_DIR = path.join(CURR_DIR, 'hk_npcs')
+SOURCE_NPC_DIR = path.join(CURR_DIR, 'source_npcs')
+# MAPPER_FILE = path.join(CURR_DIR, 'mapper.json')
+# MAPPER = json.load(open(MAPPER_FILE))
 
 def main():
-	for root, dirs, files in walk(SOURCE_NPC_DIR):
+	for root, _, files in walk(SOURCE_NPC_DIR):
 		for file in files:
 			with open (path.join(root, file)) as input:
 				npcs = json.load(input)
-				parsed = dict()
+				new_npc_bundle = list()
 				for npc in npcs:
 					mapper = FiveEMapper(npc)
 
 					new_npc = mapper.parse()
-					pprint.pprint(new_npc)
+					new_npc_bundle.append(new_npc)
 
+					new_npc_file_name = f"{new_npc['name']}_hk.json"
+					new_npc_file = path.join(TARGET_NPC_DIR, new_npc_file_name)
+					with open(new_npc_file, 'w') as out:
+						json.dump(new_npc, out)
+
+				new_npc_bundle_file_name = f"{file}_bundle_hk.json"
+				new_npc_bundle_file = path.join(TARGET_NPC_DIR, new_npc_bundle_file_name)
+				with open(new_npc_bundle_file, 'w') as bundle:
+					json.dump(new_npc_bundle, bundle)
 					
 					# for key, formula in MAPPER.items():
 					# 	new_val = formula
