@@ -28,7 +28,7 @@ def main():
 					with open(new_npc_file, 'w') as out:
 						json.dump(new_npc, out)
 
-				new_npc_bundle_file_name = f"{file}_bundle_hk.json"
+				new_npc_bundle_file_name = f"{file.replace('.json', '')}_bundle_hk.json"
 				new_npc_bundle_file = path.join(TARGET_NPC_DIR, new_npc_bundle_file_name)
 				with open(new_npc_bundle_file, 'w') as bundle:
 					json.dump(new_npc_bundle, bundle)
