@@ -1,7 +1,9 @@
 import json
 from os import path, walk
 import re
+from mappers.FiveEMapper import FiveEMapper
 
+import pprint
 
 SOURCE_NPC_DIR = path.join(path.dirname(path.abspath(__file__)), 'source_npcs')
 MAPPER_FILE = path.join(path.dirname(path.abspath(__file__)), 'mapper.json')
@@ -14,27 +16,33 @@ def main():
 				npcs = json.load(input)
 				parsed = dict()
 				for npc in npcs:
-					for key, formula in MAPPER.items():
-						new_val = formula
-						attr_re = r"\{(.+?)\}"
-						source_attrs = re.findall(attr_re, formula)
-						for src_attr in source_attrs:
-							nests = src_attr.split('.')
-							target = npc
-							for n in nests:
-								target = target[n]
+					mapper = FiveEMapper(npc)
 
-							new_val = re.sub(r"\{" + str(src_attr) + r"\}",  str(target), new_val)
+					new_npc = mapper.parse()
+					pprint.pprint(new_npc)
+
+					
+					# for key, formula in MAPPER.items():
+					# 	new_val = formula
+					# 	attr_re = r"\{(.+?)\}"
+					# 	source_attrs = re.findall(attr_re, formula)
+					# 	for src_attr in source_attrs:
+					# 		nests = src_attr.split('.')
+					# 		target = npc
+					# 		for n in nests:
+					# 			target = target[n]
+
+					# 		new_val = re.sub(r"\{" + str(src_attr) + r"\}",  str(target), new_val)
 						
-						func_re = r"(.+?)\((.+?)\)"
-						if len(re.findall(func_re, new_val)) > 0:
-							match = re.search(func_re, new_val)
-							func_name = match.group(1)
-							func_arg = match.group(2)
-							func = globals()[func_name]
-							new_val = func(func_arg)
+					# 	func_re = r"(.+?)\((.+?)\)"
+					# 	if len(re.findall(func_re, new_val)) > 0:
+					# 		match = re.search(func_re, new_val)
+					# 		func_name = match.group(1)
+					# 		func_arg = match.group(2)
+					# 		func = globals()[func_name]
+					# 		new_val = func(func_arg)
 							
-						print(key, new_val)
+					# 	print(key, new_val)
 
 						# print(source)
 						

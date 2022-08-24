@@ -4,8 +4,8 @@
 	"url": "kobold",
 	"size": "Medium",
 	"alignment": "Lawful evil",
-	"subtype": "Kobold",
 	"type": "Humanoid",
+	"subtype": "Kobold",
 	"source": "mm 195",
 	"armor_class": 12,
 	"hit_points": 5,
@@ -25,6 +25,10 @@
 			"range": 60
 		}
 	},
+	"languages": [
+		"Common",
+		"Draconic"
+	],
 	"saving_throws": [],
 	"skills": [],
 	"skills_expertise": [],
@@ -75,10 +79,7 @@
 			"range": "30/120"
 		}
 	],
-	"languages": [
-		"Common",
-		"Draconic"
-	],
+	
 	"special_abilities": [
 		{
 			"action_list": [
