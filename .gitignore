@@ -1,4 +1,5 @@
 hk_npcs/*.json
+source_npcs/*.json
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/python
