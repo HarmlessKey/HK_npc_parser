@@ -24,14 +24,16 @@ class FiveEMapper(BaseMapper):
 	def type(self):
 		type_wrap = self.npc["type"]
 		if type(type_wrap) == str:
-			return type_wrap
-		if type(type_wrap) == dict and hasattr(type_wrap, 'type'):
-			return str(self.npc['type']['type']).capitalize()
+			return type_wrap.capitalize()
+		if type(type_wrap) == dict:
+			return str(type_wrap.get('type', "")).capitalize()
+		else:
+			print(type(type_wrap), hasattr(type_wrap, 'type'))
 		return ""
 
 	def subtype(self):
-		if hasattr(self.npc['type'], 'tags'):
-			return str(self.npc['type']['tags'][0]).capitalize()
+		if type(self.npc['type']) == dict:
+			return ", ".join(map(str.capitalize, self.npc["type"].get('tags', [])))
 		return ""
 
 	def source(self):
@@ -49,17 +51,20 @@ class FiveEMapper(BaseMapper):
 			
 
 	def hit_points(self):
-		return int(self.npc['hp']['average'])
-
+		return self.npc['hp'].get('average', 1)
+		
 	def hit_dice(self):
-		return str(self.npc['hp']['formula']).split(' ')[0]
+		return str(self.npc['hp'].get('formula', '1d1')).split(' ')[0]
 
 	def proficiency(self):
 		return self.calcProficiency(self.challenge_rating())
 
 	def challenge_rating(self):
 		from fractions import Fraction
-		return float(Fraction(self.npc['cr']))
+		cr = self.npc.get('cr', 0)
+		if type(cr) == dict:
+			cr = cr.get('cr', 0)
+		return float(Fraction(cr))
 
 	def strength(self):
 		return self.npc['str']
@@ -80,15 +85,28 @@ class FiveEMapper(BaseMapper):
 		return self.npc['cha']
 
 	def walk_speed(self):
-		if hasattr(self.npc['speed'], 'walk'):
-			return int(self.npc['speed']['walk'])
-		return 0
+		speed = self.npc.get('speed', {}).get('walk', 0)
+		if type(speed) == dict:
+			speed = speed.get('number', 0)
+		return int(speed)
+	
+	def swim_speed(self):
+		return int(self.npc.get('speed', {}).get('swim', 0))
+
+	def fly_speed(self):
+		return int(self.npc.get('speed', {}).get('fly', 0))
+
+	def burrow_speed(self):
+		return int(self.npc.get('speed', {}).get('burrow', 0))
+
+	def climb_speed(self):
+		return int(self.npc.get('speed', {}).get('climb', 0))
 
 	def senses(self):
 		return {}
 
 	def languages(self):
-		return self.npc['languages']
+		return self.npc.get('languages', [])
 
 	def saving_throws(self):
 		return []
@@ -115,13 +133,14 @@ class FiveEMapper(BaseMapper):
 		return []
 
 	def actions(self):
-		return []
-		src_actions = self.npc['action']
+		# return []
+		src_actions = self.npc.get('action', [])
 		actions = list()
 
 		attack_type_regex = r"\{\@atk\s(.+?)\}"
 		to_hit_regex = r"\{\@hit\s(\d+?)\}"
-		damage_roll_regex = r"\{\@damage\s(.+?)\}"
+		damage_roll_regex = r"\{\@damage\s(?P<N>\d+)d(?P<D>\d+)\s[+-]\s(?P<M>\d+)?\}"
+		dmg_types = ["acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"]
 
 		for src_action in src_actions:
 			name = src_action['name']
@@ -136,21 +155,43 @@ class FiveEMapper(BaseMapper):
 				"name": name
 			}
 			for entry in src_action['entries']:
-				attack_type = re.search(attack_type_regex, entry).group(1)
-				to_hit = re.search(to_hit_regex, entry).group(1)
-				damage_roll = re.search(damage_roll_regex, entry).group(1)
+				if type(entry) == dict:
+					# entry contains an ordered list
+					if entry['type'] == 'list':
+						for item in entry['items']:
+							combined_item = f"{item['name']}. {item['entry']}"
+							action['desc'] += "\n" + combined_item
+						continue
+						
+				attack_type_match = re.search(attack_type_regex, entry)
+				attack_type = attack_type_match.group(1) if attack_type_match else None
+				to_hit_match = re.search(to_hit_regex, entry)
+				to_hit = to_hit_match.group(1) if to_hit_match else None
+				damage_roll_match = re.search(damage_roll_regex, entry)
+				if damage_roll_match:
+					dmg = damage_roll_match.groups()
+				N, D, M = damage_roll_match.groups() if damage_roll_match else (None, None, None)
+				damage_type = [t for t in dmg_types if t in entry][0] if damage_roll_match else None
 
-				roll = {
-					"damage_type": "",
-					"dice_count": 0,
-					"dice_type": 0,
-					"fixed_val": 2,
-					"miss_mod": 0
-				}
+				if N and D:
+					roll = {
+						"damage_type": damage_type,
+						"dice_count": int(N),
+						"dice_type": int(D),
+						"fixed_val": int(M),
+						"miss_mod": 0
+					}
+
+					action['action_list'][0]['rolls'].append(roll)
+				action['desc'] = entry
+
+			actions.append(action)
+		return actions
+			
 
 
 	def special_abilities(self):
-		src_abilities = self.npc['trait']
+		src_abilities = self.npc.get('trait', [])
 		special_abilities = list()
 		for src_ability in src_abilities:
 			ability = {

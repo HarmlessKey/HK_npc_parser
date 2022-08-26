@@ -82,8 +82,20 @@ class BaseMapper(ABC):
 		raise NotImplementedError
 
 	def walk_speed(self):
-		return ""
+		return None
 
+	def swim_speed(self):
+		return None
+
+	def fly_speed(self):
+		return None
+
+	def burrow_speed(self):
+		return None
+
+	def climb_speed(self):
+		return None
+		
 	def senses(self):
 		return {}
 

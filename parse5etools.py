@@ -1,5 +1,5 @@
 import json
-from os import path, walk
+from os import path, walk, mkdir
 import re
 from mappers.FiveEMapper import FiveEMapper
 
@@ -12,6 +12,14 @@ SOURCE_NPC_DIR = path.join(CURR_DIR, 'source_npcs')
 def main():
 	for root, _, files in walk(SOURCE_NPC_DIR):
 		for file in files:
+			if not file[-4:] == "json":
+				continue
+			
+			file_name = file[:-5]
+			target_dir = path.join(TARGET_NPC_DIR, file_name)
+			if not path.exists(target_dir):
+				mkdir(target_dir)
+
 			with open (path.join(root, file)) as input:
 				npcs = json.load(input)
 				new_npc_bundle = list()
@@ -22,7 +30,7 @@ def main():
 					new_npc_bundle.append(new_npc)
 
 					new_npc_file_name = f"{new_npc['name']}_hk.json"
-					new_npc_file = path.join(TARGET_NPC_DIR, new_npc_file_name)
+					new_npc_file = path.join(target_dir, new_npc_file_name)
 					with open(new_npc_file, 'w') as out:
 						json.dump(new_npc, out, indent=2)
 
