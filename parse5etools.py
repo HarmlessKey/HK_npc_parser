@@ -26,12 +26,12 @@ def main():
 					new_npc_file_name = f"{new_npc['name']}_hk.json"
 					new_npc_file = path.join(TARGET_NPC_DIR, new_npc_file_name)
 					with open(new_npc_file, 'w') as out:
-						json.dump(new_npc, out)
+						json.dump(new_npc, out, indent=2)
 
 				new_npc_bundle_file_name = f"{file.replace('.json', '')}_bundle_hk.json"
 				new_npc_bundle_file = path.join(TARGET_NPC_DIR, new_npc_bundle_file_name)
 				with open(new_npc_bundle_file, 'w') as bundle:
-					json.dump(new_npc_bundle, bundle)
+					json.dump(new_npc_bundle, bundle, indent=2)
 					
 					# for key, formula in MAPPER.items():
 					# 	new_val = formula

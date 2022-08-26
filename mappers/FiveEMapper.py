@@ -1,3 +1,5 @@
+from email.iterators import typed_subpart_iterator
+import re
 
 from .BaseMapper import BaseMapper
 
@@ -20,7 +22,12 @@ class FiveEMapper(BaseMapper):
 		return sizeTable[baseSize]
 
 	def type(self):
-		return str(self.npc['type']['type']).capitalize()
+		type_wrap = self.npc["type"]
+		if type(type_wrap) == str:
+			return type_wrap
+		if type(type_wrap) == dict and hasattr(type_wrap, 'type'):
+			return str(self.npc['type']['type']).capitalize()
+		return ""
 
 	def subtype(self):
 		if hasattr(self.npc['type'], 'tags'):
@@ -109,9 +116,56 @@ class FiveEMapper(BaseMapper):
 
 	def actions(self):
 		return []
+		src_actions = self.npc['action']
+		actions = list()
+
+		attack_type_regex = r"\{\@atk\s(.+?)\}"
+		to_hit_regex = r"\{\@hit\s(\d+?)\}"
+		damage_roll_regex = r"\{\@damage\s(.+?)\}"
+
+		for src_action in src_actions:
+			name = src_action['name']
+			action = {
+				"action_list": [
+					{
+						"attack_bonus": 0,
+						"rolls": [],
+					}
+				],
+				"desc": "",
+				"name": name
+			}
+			for entry in src_action['entries']:
+				attack_type = re.search(attack_type_regex, entry).group(1)
+				to_hit = re.search(to_hit_regex, entry).group(1)
+				damage_roll = re.search(damage_roll_regex, entry).group(1)
+
+				roll = {
+					"damage_type": "",
+					"dice_count": 0,
+					"dice_type": 0,
+					"fixed_val": 2,
+					"miss_mod": 0
+				}
+
 
 	def special_abilities(self):
-		return []
+		src_abilities = self.npc['trait']
+		special_abilities = list()
+		for src_ability in src_abilities:
+			ability = {
+				"action_list": [
+					{
+						"rolls": [],
+						"type": "other"
+					}
+				],
+				"desc": " ".join(src_ability['entries']),
+				"name": src_ability['name']
+			}
+			special_abilities.append(ability)
+		return special_abilities
+
 
 	def legendary_actions(self):
 		return []
