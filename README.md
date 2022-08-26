@@ -15,3 +15,17 @@ install python: https://www.python.org/downloads/
 	- Npcs will be each stored separately
 	- Npcs will be stored in a bundle file based on input bundle
 5. Import those npcs in bulk in https://HarmlessKey.com, or separately
+
+
+### To Do
+1. Save type actions
+2. Recharge / Limited use
+3. Versatile actions
+4. Defences
+5. Spellcasting
+6. Skills
+7. Saving Throws
+8. Senses
+9. Alignment
+10. Reach
+11. AOE type
