@@ -1,4 +1,4 @@
-hk_npcs/*.json
+hk_npcs/**/*.json
 source_npcs/*.json
 
 
