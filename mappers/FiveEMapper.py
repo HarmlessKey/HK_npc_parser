@@ -133,27 +133,49 @@ class FiveEMapper(BaseMapper):
 		return []
 
 	def actions(self):
-		# return []
-		src_actions = self.npc.get('action', [])
+		return self.parseActions(self.npc.get('action', []))
+
+	def special_abilities(self):
+		return self.parseActions(self.npc.get('trait', []))
+
+	def legendary_actions(self):
+		return self.parseActions(self.npc.get('legendary', []), True)
+		
+	def reactions(self):
+		return self.parseActions(self.npc.get('reaction', []))
+
+	def parseActions(self, src_actions, legendary=False):
 		actions = list()
 
+		leg_cost_regex = r"\(Costs (\d+) Actions\)"
 		attack_type_regex = r"\{\@atk\s(.+?)\}"
 		to_hit_regex = r"\{\@hit\s(\d+?)\}"
 		damage_roll_regex = r"\{\@damage\s(?P<N>\d+)d(?P<D>\d+)\s[+-]\s(?P<M>\d+)?\}"
 		dmg_types = ["acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"]
+		attack_type_lut = {
+			'mw': "melee_weapon",
+			'rw': "ranged_weapon",
+			'ms': "spell_attack",
+			'rs': "spell_attack"
+		}
 
 		for src_action in src_actions:
 			name = src_action['name']
 			action = {
 				"action_list": [
 					{
-						"attack_bonus": 0,
 						"rolls": [],
 					}
 				],
 				"desc": "",
 				"name": name
 			}
+
+			if legendary:
+				leg_cost_match = re.search(leg_cost_regex, name)
+				leg_cost = leg_cost_match.group(1) if leg_cost_match else 1
+				action['legendary_cost'] = int(leg_cost)
+
 			for entry in src_action['entries']:
 				if type(entry) == dict:
 					# entry contains an ordered list
@@ -164,16 +186,23 @@ class FiveEMapper(BaseMapper):
 						continue
 						
 				attack_type_match = re.search(attack_type_regex, entry)
-				attack_type = attack_type_match.group(1) if attack_type_match else None
+				if attack_type_match:
+					# Use this in future to create split melee and ranged weapon attack now just take first option
+					attack_type = attack_type_match.group(1).split(',')[0]
+					action['action_list'][0]['type'] = attack_type_lut[attack_type]
+				else:
+					action['action_list'][0]['type'] = "other"
+
 				to_hit_match = re.search(to_hit_regex, entry)
-				to_hit = to_hit_match.group(1) if to_hit_match else None
+				if to_hit_match:
+					to_hit = to_hit_match.group(1)
+					action['action_list'][0]['attack_bonus'] = int(to_hit)
+
 				damage_roll_match = re.search(damage_roll_regex, entry)
 				if damage_roll_match:
-					dmg = damage_roll_match.groups()
-				N, D, M = damage_roll_match.groups() if damage_roll_match else (None, None, None)
-				damage_type = [t for t in dmg_types if t in entry][0] if damage_roll_match else None
-
-				if N and D:
+					N, D, M = damage_roll_match.groups()
+					damage_type = [t for t in dmg_types if t in entry][0] if damage_roll_match else None
+					
 					roll = {
 						"damage_type": damage_type,
 						"dice_count": int(N),
@@ -181,35 +210,9 @@ class FiveEMapper(BaseMapper):
 						"fixed_val": int(M),
 						"miss_mod": 0
 					}
-
 					action['action_list'][0]['rolls'].append(roll)
+
 				action['desc'] = entry
 
 			actions.append(action)
 		return actions
-			
-
-
-	def special_abilities(self):
-		src_abilities = self.npc.get('trait', [])
-		special_abilities = list()
-		for src_ability in src_abilities:
-			ability = {
-				"action_list": [
-					{
-						"rolls": [],
-						"type": "other"
-					}
-				],
-				"desc": " ".join(src_ability['entries']),
-				"name": src_ability['name']
-			}
-			special_abilities.append(ability)
-		return special_abilities
-
-
-	def legendary_actions(self):
-		return []
-
-	def reactions(self):
-		return []

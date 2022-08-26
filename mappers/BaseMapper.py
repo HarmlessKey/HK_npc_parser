@@ -11,6 +11,9 @@ class BaseMapper(ABC):
 		for attr in attr_list:
 			func = getattr(self, attr)
 			parsed_npc[attr] = func()
+
+		if len(parsed_npc['legendary_actions']):
+			parsed_npc['legendary_count'] = 3
 		return parsed_npc
 
 	def calcProficiency(self, cr_float):
