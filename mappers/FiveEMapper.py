@@ -1,7 +1,9 @@
 from email.iterators import typed_subpart_iterator
 import re
+import urllib.parse
 
-from .BaseMapper import BaseMapper
+from mappers.BaseMapper import BaseMapper
+from utils.ability_shorthands import short2ability
 
 class FiveEMapper(BaseMapper):
 	
@@ -40,6 +42,10 @@ class FiveEMapper(BaseMapper):
 		source = f"{self.npc['source']} {self.npc['page']}"
 		# source += f" [{', '.join(map(lambda s: s['source'], self.npc['otherSources']))}]"
 		return source
+
+	def avatar(self):
+		# if self.npc['hasFluffImages']:
+		return "https://" + urllib.parse.quote(f"5e.tools/img/bestiary/{self.source().split(' ')[0]}/{self.name()}.jpg")
 
 	def armor_class(self):
 		# Atm only account for base AC, not buffed AC such as mage armor
@@ -109,10 +115,13 @@ class FiveEMapper(BaseMapper):
 		return self.npc.get('languages', [])
 
 	def saving_throws(self):
-		return []
+		saves_object = self.npc.get('save', {})
+		return [short2ability(save) for save in saves_object]
 
 	def skills(self):
-		return []
+		skill_object = self.npc.get('skill', {})
+		return [skill for skill in skill_object]
+
 
 	def skills_expertise(self):
 		return []
@@ -150,7 +159,7 @@ class FiveEMapper(BaseMapper):
 		leg_cost_regex = r"\(Costs (\d+) Actions\)"
 		attack_type_regex = r"\{\@atk\s(.+?)\}"
 		to_hit_regex = r"\{\@hit\s(\d+?)\}"
-		damage_roll_regex = r"\{\@damage\s(?P<N>\d+)d(?P<D>\d+)\s[+-]\s(?P<M>\d+)?\}"
+		damage_roll_regex = r"\{\@damage\s(?P<N>\d+)d(?P<D>\d+)(?:\s[+-]\s(?P<M>\d+))?\}"
 		dmg_types = ["acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"]
 		attack_type_lut = {
 			'mw': "melee_weapon",
@@ -200,14 +209,16 @@ class FiveEMapper(BaseMapper):
 
 				damage_roll_match = re.search(damage_roll_regex, entry)
 				if damage_roll_match:
-					N, D, M = damage_roll_match.groups()
+					N = damage_roll_match.group('N')
+					D = damage_roll_match.group('D')
+					M = damage_roll_match.group('M')
 					damage_type = [t for t in dmg_types if t in entry][0] if damage_roll_match else None
 					
 					roll = {
 						"damage_type": damage_type,
-						"dice_count": int(N),
-						"dice_type": int(D),
-						"fixed_val": int(M),
+						"dice_count": int(N) if N else 0,
+						"dice_type": int(D) if D else 0,
+						"fixed_val": int(M) if M else 0,
 						"miss_mod": 0
 					}
 					action['action_list'][0]['rolls'].append(roll)

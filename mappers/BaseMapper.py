@@ -6,7 +6,7 @@ class BaseMapper(ABC):
 		self.npc = npc
 
 	def parse(self):
-		attr_list = ['name', 'size', 'alignment', 'type', 'subtype', 'source', 'armor_class', 'hit_points', 'hit_dice', 'proficiency', 'challenge_rating', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma', 'walk_speed', 'senses', 'languages', 'saving_throws', 'skills', 'skills_expertise', 'damage_resistances', 'damage_vulnerability', 'damage_immunities', 'condition_immunities', 'caster_spell_slots', 'actions', 'special_abilities', 'legendary_actions', 'reactions']
+		attr_list = ['name', 'size', 'alignment', 'type', 'subtype', 'source', 'avatar', 'armor_class', 'hit_points', 'hit_dice', 'proficiency', 'challenge_rating', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma', 'walk_speed', 'senses', 'languages', 'saving_throws', 'skills', 'skills_expertise', 'damage_resistances', 'damage_vulnerability', 'damage_immunities', 'condition_immunities', 'caster_spell_slots', 'actions', 'special_abilities', 'legendary_actions', 'reactions']
 		parsed_npc = dict()
 		for attr in attr_list:
 			func = getattr(self, attr)
@@ -49,6 +49,9 @@ class BaseMapper(ABC):
 		return ""
 
 	def source(self):
+		return ""
+
+	def avatar(sefl):
 		return ""
 
 	def armor_class(self):
